@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface NotificationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNotification()
+    suspend fun insertNotification(notification: Notification)
 
     @Query("SELECT * FROM notification_table")
     fun getAllNotifications(): Flow<List<Notification>>

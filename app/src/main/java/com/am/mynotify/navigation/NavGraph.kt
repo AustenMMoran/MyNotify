@@ -12,6 +12,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.am.mynotify.presentation.screens.yournotifications.YourNotificationScreen
 import com.am.mynotify.presentation.screens.yournotifications.YourNotificationsViewModel
 
 @Composable
@@ -22,20 +23,23 @@ fun NavGraph(
         navController = navController,
         startDestination = "your_notifications"
     ){
-
+        yourNotifications()
 
     }
+}
 
-    fun NavGraphBuilder.yourNotifications(){
-        composable(
-            route = "your_notifications",
-            enterTransition = { fadeIn(animationSpec = tween(durationMillis = 500)) },
-            exitTransition = { fadeOut(animationSpec = tween(durationMillis = 500)) }
-        ){
-            val viewModel = hiltViewModel<YourNotificationsViewModel>()
+fun NavGraphBuilder.yourNotifications(){
+    composable(
+        route = "your_notifications",
+        enterTransition = { fadeIn(animationSpec = tween(durationMillis = 500)) },
+        exitTransition = { fadeOut(animationSpec = tween(durationMillis = 500)) }
+    ){
+        val viewModel = hiltViewModel<YourNotificationsViewModel>()
 
-
-        }
+        YourNotificationScreen(
+            viewModel,
+            navigateToCreate = {}
+        )
 
     }
 }
