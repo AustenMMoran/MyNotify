@@ -52,7 +52,7 @@ fun YourNotificationScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    yourNotificationsViewModel.addOne()
+                    navigateToCreate()
                 },
                 shape = RoundedCornerShape(16.dp),
                 elevation = FloatingActionButtonDefaults.elevation(),

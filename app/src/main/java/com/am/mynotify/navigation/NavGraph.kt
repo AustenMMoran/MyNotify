@@ -1,17 +1,16 @@
 package com.am.mynotify.navigation
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.am.mynotify.presentation.create_notifications.CreateNotificationScreen
+import com.am.mynotify.presentation.create_notifications.CreateNotificationViewModel
 import com.am.mynotify.presentation.screens.yournotifications.YourNotificationScreen
 import com.am.mynotify.presentation.screens.yournotifications.YourNotificationsViewModel
 
@@ -23,22 +22,53 @@ fun NavGraph(
         navController = navController,
         startDestination = "your_notifications"
     ){
-        yourNotifications()
+        yourNotifications(
+            navToCreate = {
+                navController.navigate("create_notification")
+            }
+        )
+
+        createNotifications(
+            navBack = {
+                //Todo: Custom navigate options to remove requirement to double pop
+                navController.popBackStack()
+                navController.popBackStack()
+                navController.navigate("your_notifications")
+            }
+        )
 
     }
 }
 
-fun NavGraphBuilder.yourNotifications(){
+fun NavGraphBuilder.yourNotifications(
+    navToCreate: () -> Unit
+){
     composable(
         route = "your_notifications",
         enterTransition = { fadeIn(animationSpec = tween(durationMillis = 500)) },
         exitTransition = { fadeOut(animationSpec = tween(durationMillis = 500)) }
     ){
         val viewModel = hiltViewModel<YourNotificationsViewModel>()
-
         YourNotificationScreen(
             viewModel,
-            navigateToCreate = {}
+            navigateToCreate = { navToCreate() }
+        )
+    }
+}
+
+fun NavGraphBuilder.createNotifications(
+    navBack: () -> Unit
+){
+    composable(
+        route = "create_notification",
+        enterTransition = { fadeIn(animationSpec = tween(durationMillis = 500)) },
+        exitTransition = { fadeOut(animationSpec = tween(durationMillis = 500)) }
+    ){
+        val viewModel = hiltViewModel<CreateNotificationViewModel>()
+
+        CreateNotificationScreen(
+            viewModel,
+            navigateBack = { navBack() }
         )
 
     }
