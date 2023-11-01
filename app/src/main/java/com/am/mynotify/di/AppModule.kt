@@ -23,5 +23,4 @@ class AppModule {
         return NotificationRepositoryImpl(db.NotificationDao())
     }
 
-
 }
