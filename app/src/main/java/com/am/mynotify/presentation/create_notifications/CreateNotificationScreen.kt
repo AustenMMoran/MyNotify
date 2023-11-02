@@ -1,5 +1,6 @@
 package com.am.mynotify.presentation.create_notifications
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -26,7 +27,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.unit.dp
-import com.am.mynotify.data.database.entities.Notification
 import com.am.mynotify.presentation.create_notifications.componants.GetMessage
 import com.am.mynotify.presentation.create_notifications.componants.GetTitle
 
@@ -78,9 +78,14 @@ fun CreateNotificationScreen(
                                 validateInputTitle()
                                 validateInputMessage()
 
-                                if (titleErrorState && messageErrorState) {
+                                Log.d(TAG, "TextField states = Title: $titleErrorState Message: $messageErrorState")
+                                //If NOT isError try to create notification
+                                if (!titleErrorState && !messageErrorState) {
                                     createNotificationViewModel.createNotification(
-                                        titleValue, messageValue)
+                                        titleValue, messageValue
+                                    )
+
+                                    navigateBack()
                                 }
                             }
                     )
