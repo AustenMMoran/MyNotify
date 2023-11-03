@@ -50,6 +50,5 @@ class YourNotificationsViewModel @Inject constructor(
                 isActive
             )
         }
-
     }
 }

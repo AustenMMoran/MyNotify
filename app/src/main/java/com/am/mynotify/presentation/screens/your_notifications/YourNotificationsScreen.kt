@@ -71,7 +71,7 @@ fun YourNotificationScreen(
         content = { padding ->
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.TopStart
+                contentAlignment = Alignment.TopCenter
             ) {
                 LazyColumn(
                     modifier = Modifier
