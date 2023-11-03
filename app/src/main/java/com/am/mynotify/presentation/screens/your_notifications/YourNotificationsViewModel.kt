@@ -1,12 +1,10 @@
 package com.am.mynotify.presentation.screens.your_notifications
 
-import android.app.NotificationManager
 import android.util.Log
-import androidx.core.app.NotificationCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.am.mynotify.R
 import com.am.mynotify.data.database.entities.Notification
+import com.am.mynotify.domain.notification.MyNotificationManager
 import com.am.mynotify.domain.repository.NotificationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,8 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class YourNotificationsViewModel @Inject constructor(
     private val notificationRepository: NotificationRepository,
-    private val notificationManager: NotificationManager,
-    private val notificationBuilder: NotificationCompat.Builder
+    private val myNotificationManager: MyNotificationManager
 ) : ViewModel() {
 
     init {
@@ -45,24 +42,14 @@ class YourNotificationsViewModel @Inject constructor(
         isActive: Boolean
     ){
         Log.d("lolipop", "launchNotification: $notification.title")
-
         viewModelScope.launch(Dispatchers.IO){
             notification.isOnOrOff = isActive
             notificationRepository.upsertNotification(notification)
-
-            if(isActive){
-                notificationBuilder
-                    .setSmallIcon(R.drawable.ic_bell_24)
-                    .setContentTitle(notification.title)
-                    .setContentText(notification.message)
-
-
-                notificationManager.notify(notification.id, notificationBuilder.build())
-            } else {
-                notificationManager.cancel(notification.id)
-            }
-
-            Log.d("lolipop", "launchNotification: ${notificationManager.activeNotifications.size}")
+            myNotificationManager.aHandleOnNotificationChange(
+                notification,
+                isActive
+            )
         }
+
     }
 }

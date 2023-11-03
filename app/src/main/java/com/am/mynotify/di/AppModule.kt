@@ -9,6 +9,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.am.mynotify.data.database.NotificationDatabase
 import com.am.mynotify.data.repository.NotificationRepositoryImpl
+import com.am.mynotify.domain.notification.MyNotificationManager
+import com.am.mynotify.domain.notification.MyNotificationManagerImpl
 import com.am.mynotify.domain.repository.NotificationRepository
 import com.am.mynotify.util.Constants
 import dagger.Module
@@ -27,9 +29,18 @@ class AppModule {
     @Provides
     @Singleton
     fun provideNotificationRepository(
-      db: NotificationDatabase
+        db: NotificationDatabase
     ) : NotificationRepository {
         return NotificationRepositoryImpl(db.NotificationDao())
+    }
+
+    @Provides
+    @Singleton
+    fun provideMyNotificationManager(
+        notificationManager: NotificationManager,
+        builder: NotificationCompat.Builder
+    ) : MyNotificationManager {
+        return MyNotificationManagerImpl(notificationManager,builder)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
