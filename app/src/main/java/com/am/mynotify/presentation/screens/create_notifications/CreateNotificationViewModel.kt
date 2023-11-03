@@ -1,4 +1,4 @@
-package com.am.mynotify.presentation.create_notifications
+package com.am.mynotify.presentation.screens.create_notifications
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,9 +11,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateNotificationViewModel @Inject constructor(
-    private val notificationRepo : NotificationRepository
+    private val notificationRepo : NotificationRepository,
 ) : ViewModel() {
-
     fun createNotification(title: String, message: String){
         val newNotification = Notification(
             title = title,
@@ -21,8 +20,7 @@ class CreateNotificationViewModel @Inject constructor(
         )
 
         viewModelScope.launch(Dispatchers.IO){
-            notificationRepo.insertNotifications(newNotification)
+            notificationRepo.upsertNotification(newNotification)
         }
     }
-
 }

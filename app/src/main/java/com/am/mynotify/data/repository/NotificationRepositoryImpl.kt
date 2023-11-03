@@ -13,8 +13,8 @@ class NotificationRepositoryImpl(
         return notificationDao.getAllNotifications()
     }
 
-    override suspend fun insertNotifications(notification: Notification) {
-        Log.d("lolipop", "insertNotifications: $notification")
+    override suspend fun upsertNotification(notification: Notification) {
+        Log.d("lolipop", "upsertNotifications: $notification")
         notificationDao.insertNotification(notification)
     }
 }

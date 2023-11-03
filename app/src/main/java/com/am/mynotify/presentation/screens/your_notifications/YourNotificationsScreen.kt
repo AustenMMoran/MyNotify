@@ -1,4 +1,4 @@
-package com.am.mynotify.presentation.screens.yournotifications
+package com.am.mynotify.presentation.screens.your_notifications
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -80,7 +80,15 @@ fun YourNotificationScreen(
                     items(
                         uiNotificationList.value
                     ) { item ->
-                        UiNotificationItem(notification = item)
+                        UiNotificationItem(
+                            notification = item,
+                            setNotification = {isActive ->
+                                yourNotificationsViewModel.aHandleOnNotificationChange(
+                                    item,
+                                    isActive
+                                )
+                            }
+                        )
                     }
                 }
             }

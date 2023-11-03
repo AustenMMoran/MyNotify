@@ -1,4 +1,4 @@
-package com.am.mynotify.presentation.create_notifications
+package com.am.mynotify.presentation.screens.create_notifications
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -27,8 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.unit.dp
-import com.am.mynotify.presentation.create_notifications.componants.GetMessage
-import com.am.mynotify.presentation.create_notifications.componants.GetTitle
+import com.am.mynotify.presentation.screens.create_notifications.componants.GetMessage
+import com.am.mynotify.presentation.screens.create_notifications.componants.GetTitle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -84,7 +84,6 @@ fun CreateNotificationScreen(
                                     createNotificationViewModel.createNotification(
                                         titleValue, messageValue
                                     )
-
                                     navigateBack()
                                 }
                             }

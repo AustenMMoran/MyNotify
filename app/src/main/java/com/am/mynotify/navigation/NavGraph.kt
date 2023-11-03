@@ -1,18 +1,18 @@
 package com.am.mynotify.navigation
+
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.am.mynotify.presentation.create_notifications.CreateNotificationScreen
-import com.am.mynotify.presentation.create_notifications.CreateNotificationViewModel
-import com.am.mynotify.presentation.screens.yournotifications.YourNotificationScreen
-import com.am.mynotify.presentation.screens.yournotifications.YourNotificationsViewModel
+import com.am.mynotify.presentation.screens.create_notifications.CreateNotificationScreen
+import com.am.mynotify.presentation.screens.create_notifications.CreateNotificationViewModel
+import com.am.mynotify.presentation.screens.your_notifications.YourNotificationScreen
+import com.am.mynotify.presentation.screens.your_notifications.YourNotificationsViewModel
 
 @Composable
 fun NavGraph(
