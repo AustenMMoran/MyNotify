@@ -15,4 +15,7 @@ interface NotificationDao {
     @Query("SELECT * FROM notification_table")
     fun getAllNotifications(): Flow<List<Notification>>
 
+    @Query("DELETE FROM notification_table WHERE id = :notificationID")
+    suspend fun deleteNotification(notificationID:Int)
+
 }
