@@ -82,11 +82,15 @@ fun YourNotificationScreen(
                     ) { item ->
                         UiNotificationItem(
                             notification = item,
-                            setNotification = {isActive ->
+                            setNotification = { isActive ->
                                 yourNotificationsViewModel.aHandleOnNotificationChange(
                                     item,
                                     isActive
                                 )
+                            },
+                            test = {
+                                //Todo: Add Dialog to delete methods
+                                yourNotificationsViewModel.deleteNotification(item)
                             }
                         )
                     }

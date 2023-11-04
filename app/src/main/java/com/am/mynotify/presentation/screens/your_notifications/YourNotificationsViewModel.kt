@@ -51,4 +51,20 @@ class YourNotificationsViewModel @Inject constructor(
             )
         }
     }
+
+    fun deleteNotification(
+        notification: Notification
+    ){
+        //Remove active notification before delete
+        if(notification.isOnOrOff){
+            viewModelScope.launch(Dispatchers.IO) {
+                myNotificationManager.aHandleOnNotificationChange(notification, isActive = false)
+            }
+        }
+
+        viewModelScope.launch(Dispatchers.IO) {
+            Log.d("lolipop", "'sdplogihn;asoding deleteNotification: ${notification.title}")
+            notificationRepository.deleteNotification(notification.title)
+        }
+    }
 }

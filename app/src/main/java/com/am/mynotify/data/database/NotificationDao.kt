@@ -12,6 +12,9 @@ interface NotificationDao {
     @Upsert
     suspend fun insertNotification(notification: Notification)
 
+    @Query("DELETE FROM notification_table WHERE title = :notificationTitle")
+    suspend fun deleteNotification(notificationTitle:String)
+
     @Query("SELECT * FROM notification_table")
     fun getAllNotifications(): Flow<List<Notification>>
 
