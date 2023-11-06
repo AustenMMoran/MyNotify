@@ -7,7 +7,7 @@ interface NotificationRepository {
     fun getAllNotifications(): Flow<List<Notification>>
     suspend fun upsertNotification(notification:Notification)
 
-    suspend fun deleteNotification(notificationTitle: String)
+    suspend fun deleteNotification(notificationId: Int)
 
 
 }

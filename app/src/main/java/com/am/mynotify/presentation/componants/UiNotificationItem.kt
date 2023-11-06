@@ -18,7 +18,7 @@ import com.am.mynotify.data.database.entities.Notification
 fun UiNotificationItem(
     notification: Notification,
     setNotification: (Boolean) -> Unit,
-    test: () -> Unit
+    test: (Notification) -> Unit
 ) {
     var isActive by remember { mutableStateOf(notification.isOnOrOff) }
 
@@ -26,7 +26,7 @@ fun UiNotificationItem(
         modifier = Modifier
             .combinedClickable(
                 onClick = {},
-                onLongClick = {test()}
+                onLongClick = {test(notification)}
             ),
         headlineContent = { Text(notification.title) },
         supportingContent = { Text(notification.message) },

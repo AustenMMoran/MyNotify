@@ -6,14 +6,16 @@ import android.content.Intent
 import android.util.Log
 import com.am.mynotify.domain.notification.MyNotificationManager
 import com.am.mynotify.domain.repository.NotificationRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class BootCompletedReceiver : BroadcastReceiver() {
-
+    //adb shell am broadcast -a android.intent.action.BOOT_COMPLETED
     @Inject
     lateinit var repository : NotificationRepository
 
@@ -24,7 +26,6 @@ class BootCompletedReceiver : BroadcastReceiver() {
         Log.d("lolipop", "onReceive: ${intent?.action}")
 
         if (intent?.action == Intent.ACTION_BOOT_COMPLETED) {
-
             CoroutineScope(Dispatchers.IO + SupervisorJob()).launch{
                 repository.getAllNotifications().collect{
                     for(notification in it){

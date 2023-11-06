@@ -18,8 +18,8 @@ class NotificationRepositoryImpl(
         notificationDao.insertNotification(notification)
     }
 
-    override suspend fun deleteNotification(notificationTitle: String) {
-        Log.d("lolipop", "deleteNotification: $notificationTitle")
-        notificationDao.deleteNotification(notificationTitle)
+    override suspend fun deleteNotification(notificationId: Int) {
+        Log.d("lolipop", "deleteNotification: $notificationId")
+        notificationDao.deleteNotification(notificationId)
     }
 }

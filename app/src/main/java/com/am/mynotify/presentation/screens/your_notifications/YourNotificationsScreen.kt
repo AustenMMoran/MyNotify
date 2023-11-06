@@ -17,6 +17,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -33,7 +34,7 @@ fun YourNotificationScreen(
 ){
 
     //Collect flow as state to ensure updates will trigger recomposition
-    val uiNotificationList = yourNotificationsViewModel.notificationList.collectAsState()
+    val uiNotificationList by yourNotificationsViewModel.notificationList.collectAsState()
 
     Scaffold(
         topBar = {
@@ -78,7 +79,7 @@ fun YourNotificationScreen(
                         .padding(padding)
                 ) {
                     items(
-                        uiNotificationList.value
+                        uiNotificationList
                     ) { item ->
                         UiNotificationItem(
                             notification = item,
@@ -89,8 +90,8 @@ fun YourNotificationScreen(
                                 )
                             },
                             test = {
-                                //Todo: Add Dialog to delete methods
-                                yourNotificationsViewModel.deleteNotification(item)
+                                //Todo: Add Dialog to delete methods + CRASH ON MORE THAN 1 ITEM
+                                yourNotificationsViewModel.deleteNotification(it)
                             }
                         )
                     }

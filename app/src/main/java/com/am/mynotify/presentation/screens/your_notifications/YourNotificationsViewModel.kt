@@ -62,9 +62,11 @@ class YourNotificationsViewModel @Inject constructor(
             }
         }
 
-        viewModelScope.launch(Dispatchers.IO) {
-            Log.d("lolipop", "'sdplogihn;asoding deleteNotification: ${notification.title}")
-            notificationRepository.deleteNotification(notification.title)
-        }
+//        viewModelScope.launch(Dispatchers.IO) {
+//            Log.d("lolipop", "'sdplogihn;asoding deleteNotification: ${notification.id}")
+//            notificationRepository.deleteNotification(notification.id)
+//        }
+
+        notificationList.value
     }
 }
