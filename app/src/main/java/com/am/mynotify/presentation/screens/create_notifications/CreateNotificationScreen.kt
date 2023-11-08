@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.SaveAs
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -59,7 +59,7 @@ fun CreateNotificationScreen(
                 colors = TopAppBarDefaults.mediumTopAppBarColors(MaterialTheme.colorScheme.background),
                 navigationIcon = {
                     Icon(
-                        Icons.AutoMirrored.Default.ArrowBack,
+                        Icons.Default.ArrowBack,
                         contentDescription = "",
                         modifier = Modifier
                             .padding(12.dp)
