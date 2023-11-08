@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
@@ -40,7 +39,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     packaging {
         resources {
@@ -50,6 +49,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
@@ -64,21 +64,26 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
-    implementation(libs.core.ktx)
 
     //Room
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
-    //Dagger-Hilt
+    // Dagger Hilt
     implementation(libs.hilt.core)
     implementation(libs.hilt.navigation)
     ksp(libs.hilt.compiler)
 
-    //Navigation
-    implementation(libs.navigation.compose)
+    // Lifecycle Aware Flow Collector
+    implementation(libs.compose.lifecycle.flow)
 
-    //Extended Icons
-    implementation(libs.androidx.material.icons.extended)
+    // Compose Navigation
+    implementation(libs.compose.navigation)
 
+    // Extended Icons
+    implementation(libs.compose.extendedIcons)
+
+    // Splash Screen
+    implementation(libs.splashScreen)
 }
